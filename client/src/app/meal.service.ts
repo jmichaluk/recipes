@@ -25,7 +25,7 @@ export class MealService {
   }
 
   getMeal(id: string): Observable<Meal> {
-    return this.httpClient.get<Meal>(`${this.url}/meals/$id}`);
+    return this.httpClient.get<Meal>(`${this.url}/meals/${id}`);
   }
 
   createMeal(meal: Meal): Observable<string> {
@@ -37,6 +37,6 @@ export class MealService {
   }
 
   deleteMeal(id: string): Observable<string> {
-    return this.httpClient.delete(`${this.url}/meal/${id}`, {responseType: 'text'});
+    return this.httpClient.delete(`${this.url}/meals/${id}`, {responseType: 'text'});
   }
 }
