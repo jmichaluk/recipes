@@ -29,13 +29,15 @@ export class MealFormComponent implements OnInit {
  constructor(private fb: FormBuilder) { }
  
  get name() { return this.mealForm.get('name')!; }
- get level() { return this.mealForm.get('type')!; }
+ get type() { return this.mealForm.get('type')!; }
+ get rating() { return this.mealForm.get('rating'); }
  
  ngOnInit() {
    this.initialState.subscribe(meal => {
      this.mealForm = this.fb.group({
        name: [ meal.name, [Validators.required] ],
-       type: [ meal.type, [Validators.required] ]
+       type: [ meal.type, [Validators.required] ],
+       rating: [ meal.rating ]
      });
    });
  
