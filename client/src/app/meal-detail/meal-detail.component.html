@@ -1,0 +1,8 @@
+<div *ngIf="meal">
+    <h2>{{meal.name | uppercase}} Details</h2>
+    <div>id: {{meal._id}}</div>
+    <div>name: {{meal.name}}</div>
+    <div>type: {{meal.type}}</div>
+
+</div>
+<button type="button" (click)="goBack()">Back</button>

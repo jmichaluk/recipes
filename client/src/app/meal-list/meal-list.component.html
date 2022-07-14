@@ -12,7 +12,7 @@
 
     <tbody>
       <tr *ngFor="let meal of meals$ | async">
-        <td>{{meal.name}}</td>
+        <td><a routerLink="detail/{{meal._id}}">{{meal.name}}</a></td>
         <td>{{meal.type}}</td>
         <td>{{meal.rating}}</td>
         <td>
@@ -22,5 +22,6 @@
       </tr>
     </tbody>
   </table>
+  <app-meal-search></app-meal-search>
 
   <button class="btn btn-primary mt-3" [routerLink]="['new']">Add a New Meal</button>

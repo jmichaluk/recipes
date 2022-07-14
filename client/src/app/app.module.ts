@@ -9,6 +9,8 @@ import { MealFormComponent } from './meal-form/meal-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddMealComponent } from './add-meal/add-meal.component';
 import { EditMealComponent } from './edit-meal/edit-meal.component';
+import { MealSearchComponent } from './meal-search/meal-search.component';
+import { MealDetailComponent } from './meal-detail/meal-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { EditMealComponent } from './edit-meal/edit-meal.component';
     MealListComponent,
     MealFormComponent,
     AddMealComponent,
-    EditMealComponent
+    EditMealComponent,
+    MealSearchComponent,
+    MealDetailComponent
   ],
   imports: [
     BrowserModule,
