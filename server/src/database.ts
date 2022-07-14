@@ -1,8 +1,10 @@
 import * as mongodb from "mongodb";
 import { Meal } from "./meal";
+import { Ingredient } from "./ingredient";
 
 export const collections: { 
     meals?: mongodb.Collection<Meal>;
+    ingredients?: mongodb.Collection<Ingredient>;
 } = {};
 
 export async function connectToDatabase(uri: string) {
@@ -14,12 +16,15 @@ export async function connectToDatabase(uri: string) {
 
     const mealsCollection = db.collection<Meal>("meals");
     collections.meals = mealsCollection;
+
+    const ingredientsCollection = db.collection<Ingredient>("ingredients");
+    collections.ingredients = ingredientsCollection;
 }
 
-// Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Menu model, even if added elsewhere.
+// Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Recipe model, even if added elsewhere.
 // For more information about schema validation, see this blog series: https://www.mongodb.com/blog/post/json-schema-validation--locking-down-your-model-the-smart-way
 async function applySchemaValidation(db: mongodb.Db) {
-    const jsonSchema = {
+    const mealjsonSchema = {
         $jsonSchema: {
             bsonType: "object",
             required: ["name", "type"],
@@ -42,14 +47,38 @@ async function applySchemaValidation(db: mongodb.Db) {
             },
         },
     };
+    const ingredientjsonSchema = {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name"],
+            additionalProperties: false,
+            properties: {
+                _id: {},
+                name: {
+                    bsonType: "string",
+                    description: "'name' is required and is a string",
+                }
+            },
+        },
+    };
   
-    // Try applying the modification to the collection, if the collection doesn't exist, create it
+    // Try applying the modification to the meals collection, if the collection doesn't exist, create it
    await db.command({
         collMod: "meals",
-        validator: jsonSchema
+        validator: mealjsonSchema
     }).catch(async (error: mongodb.MongoServerError) => {
         if (error.codeName === 'NamespaceNotFound') {
-            await db.createCollection("meals", {validator: jsonSchema});
+            await db.createCollection("meals", {validator: mealjsonSchema});
+        }
+    });
+    
+    // Try applying the modification to the ingredients collection, if the collection doesn't exist, create it
+    await db.command({
+        collMod: "ingredients",
+        validator: ingredientjsonSchema
+    }).catch(async (error: mongodb.MongoServerError) => {
+        if (error.codeName === 'NamespaceNotFound') {
+            await db.createCollection("ingredients", {validator: ingredientjsonSchema});
         }
     });
  }

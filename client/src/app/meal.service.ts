@@ -42,6 +42,7 @@ export class MealService {
   }
 
   /* GET meals whose name contains search term */
+  // TODO: FIX
   searchMeals(term: string): Observable<Meal[]> {
     if (!term.trim()) {
       // if not search term, return empty meal array.
@@ -60,7 +61,6 @@ export class MealService {
    * Handle Http operation that failed.
    * Let the app continue.
    * 
-   * TODO: FIX THIS
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */

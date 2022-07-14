@@ -1,0 +1,23 @@
+<h2 class="text-center m-5">Ingredients List</h2>
+  
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let ingredient of ingredients$ | async">
+        <td><a routerLink="detail/{{ingredient._id}}">{{ingredient.name}}</a></td>
+        <td>
+          <button class="btn btn-primary me-1" [routerLink]="['edit/', ingredient._id]">Edit</button>
+          <button class="btn btn-danger" (click)="deleteIngredient(ingredient._id || '')">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <app-ingredient-search></app-ingredient-search> -->
+
+  <button class="btn btn-primary mt-3" [routerLink]="['new']">Add a New Ingredient</button>
