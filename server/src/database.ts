@@ -1,10 +1,12 @@
 import * as mongodb from "mongodb";
 import { Meal } from "./meal";
 import { Ingredient } from "./ingredient";
+import { MealIngredient } from "./meal-ingredient";
 
 export const collections: { 
     meals?: mongodb.Collection<Meal>;
     ingredients?: mongodb.Collection<Ingredient>;
+    mealIngredients?: mongodb.Collection<MealIngredient>;
 } = {};
 
 export async function connectToDatabase(uri: string) {
@@ -19,6 +21,9 @@ export async function connectToDatabase(uri: string) {
 
     const ingredientsCollection = db.collection<Ingredient>("ingredients");
     collections.ingredients = ingredientsCollection;
+
+    const mealIngredientsCollection = db.collection<MealIngredient>("mealIngredients");
+    collections.mealIngredients = mealIngredientsCollection;
 }
 
 // Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Recipe model, even if added elsewhere.
@@ -61,6 +66,32 @@ async function applySchemaValidation(db: mongodb.Db) {
             },
         },
     };
+    const mealIngredientsjsonSchema = {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["mealId", "ingredientId", "measurement", "quantity"],
+            additionalProperties: false,
+            properties: {
+                _id: {},
+                mealId: {
+                    bsonType: "string",
+                    description: "mealId is required and is a String representing a Meal from the meals collection."
+                },
+                ingredientId: {
+                    bsonType: "string",
+                    description: "ingredientId is required and is a String representing an Ingredient from the ingredients collection."
+                },
+                measurement: {
+                    bsonType: "string",
+                    description: "'measurement' is required and is a string."
+                },
+                quantity: {
+                    bsonType: "number",
+                    description: "'quantity' is required and is a number."
+                }
+            }
+        }
+    }
   
     // Try applying the modification to the meals collection, if the collection doesn't exist, create it
    await db.command({
@@ -79,6 +110,16 @@ async function applySchemaValidation(db: mongodb.Db) {
     }).catch(async (error: mongodb.MongoServerError) => {
         if (error.codeName === 'NamespaceNotFound') {
             await db.createCollection("ingredients", {validator: ingredientjsonSchema});
+        }
+    });
+
+    // Try applying the modification to the mealIngredients collection. If the collection doesn't exist, create it.
+    await db.command({
+        collMod: "mealIngredients",
+        validator: mealIngredientsjsonSchema
+    }).catch(async (error: mongodb.MongoServerError) => {
+        if (error.codeName === 'NamespaceNotFound') {
+            await db.createCollection("mealIngredients", {validator: mealIngredientsjsonSchema});
         }
     });
  }

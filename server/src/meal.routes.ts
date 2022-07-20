@@ -14,6 +14,23 @@ mealRouter.get("/", async (_req, res) => {
     }
 });
 
+mealRouter.get("/:name", async(req, res) => {
+    try {
+        const name = req?.params?.name;
+        const query = { name: name };
+        const meals = await collections.meals.find(query).toArray();
+        
+        if (meals) {
+            res.status(200).send(meals)
+        } else {
+            res.status(404).send(`Failed to find meals with search term: ${name}`)
+        }
+    } catch (error) {
+        res.status(404).send(`Failed to find meals with search term: ${req?.params?.name}`)
+    }
+
+});
+
 mealRouter.get("/:id", async (req, res) => {
     try {
         const id = req?.params?.id;
@@ -30,13 +47,15 @@ mealRouter.get("/:id", async (req, res) => {
     }
 });
 
+// TODO: mealRouter.get("/:name") with search queary?
+
 mealRouter.post("/", async (req, res) => {
     try {
         const meal = req.body;
         const result = await collections.meals.insertOne(meal);
 
         if (result.acknowledged) {
-            res.status(201).send(`Created new meal: ID ${result.insertedId}.`);
+            res.status(201).send(result.insertedId);
         } else {
             res.status(500).send("Failed to create a new meal.");
         }
@@ -54,7 +73,7 @@ mealRouter.put("/:id", async (req, res) => {
         const result = await collections.meals.updateOne(query, { $set: meal });
 
         if (result && result.matchedCount) {
-            res.status(200).send(`Updated a meal: ID: ${id}.`);
+            res.status(200).send(id);
         } else if (!result.matchedCount) {
             res.status(404).send(`Failed to find meal: ID ${id}`);
         } else {

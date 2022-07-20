@@ -5,6 +5,7 @@ import express from "express";
 import { connectToDatabase } from "./database";
 import { mealRouter } from "./meal.routes";
 import { ingredientRouter } from "./ingredient.routes";
+import { mealIngredientsRouter } from "./meal-ingredient.routes";
  
 // Load environment variables from the .env file, where the ATLAS_URI is configured
 dotenv.config();
@@ -22,6 +23,7 @@ connectToDatabase(ATLAS_URI)
        app.use(cors());
        app.use("/meals", mealRouter);
        app.use("/ingredients", ingredientRouter);
+       app.use("/mealIngredients", mealIngredientsRouter);
  
        // start the Express server
        app.listen(5200, () => {
