@@ -30,39 +30,6 @@ mealIngredientsRouter.get("/:id", async (req, res) => {
     }
 });
 
-// get meal mealIngredients by meal id.
-mealIngredientsRouter.get("/:mealId", async (req, res) => {
-    try {
-        const mealId = req?.params?.mealId;
-        const query = { mealId: mealId };
-        const mealIngredients = await collections.mealIngredients.find(query).toArray();
-
-        if (mealIngredients) {
-            res.status(200).send(mealIngredients);
-        } else {
-            res.status(404).send(`Failed to find mealIngredients for meal: ID ${mealId}`)
-        }
-    } catch (error) {
-        res.status(404).send(`Failed to find mealIngredients for meal: ID ${req?.params?.mealId}`)
-    }
-})
-
-// get meal mealIngredients by mealIngredient id.
-mealIngredientsRouter.get("/:ingredientId", async (req, res) => {
-    try {
-        const ingredientId = req?.params?.ingredientId;
-        const query = {ingredientId: ingredientId };
-        const mealIngredients = await collections.mealIngredients.find(query).toArray();
-        if (mealIngredients) {
-            res.status(200).send(mealIngredients);
-        } else {
-            res.status(404).send(`Failed to find meals for ingredient: ID ${ingredientId}`)
-        }
-    } catch (error) {
-        res.status(404).send(`Failed to find meals for ingredient: ID ${req?.params?.ingredientId}`)
-    }
-})
-
 mealIngredientsRouter.post("/", async (req, res) => {
     try {
         const mealIngredient = req.body;
