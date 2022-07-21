@@ -1,0 +1,32 @@
+<form class="meal-ingredient-form" autocomplete="off" [formGroup]="mealIngredientForm" (ngSubmit)="submitForm()">
+    <!-- Meal Ingredients -->
+    <div>
+      <ul>
+        <li *ngFor="let mealIngredient of mealIngredients$ | async" > 
+          <!-- TODO: Get ingredient name from Ingredients collection -->
+          <!-- <span *ngIf="mealIngredient.mealId == mealId"> -->
+            <ng-container *ngIf="mealIngredient.mealId == mealId">
+              {{mealIngredient._id}} -- {{mealIngredient.quantity}} {{mealIngredient.measurement}}
+            </ng-container>
+            
+          <!-- </span> -->
+          <button class="btn btn-primary me-1" [routerLink]="['edit/', mealIngredient._id]">Edit</button>
+          <button class="btn btn-danger" (click)="deleteMealIngredient(mealIngredient._id || '')">Delete</button>
+        </li>
+      </ul>
+  
+      <select>
+        <option *ngFor="let ingredient of ingredients$ | async" value="{{ingredient._id}}">{{ingredient.name}}</option>
+      </select>    
+      <button class="btn btn-primary" type="submit">+</button>
+      <div class="alert alert-secondary">
+        * If the ingredient isn't available please add it on the <a routerLink="/ingredients" class="alert-link">Ingredients</a>
+        page first.
+      </div>
+  
+      <div>
+        <button class="btn btn-warning" type="button" routerLink="../../">Done</button>
+      </div>
+  
+    </div>
+  </form>  

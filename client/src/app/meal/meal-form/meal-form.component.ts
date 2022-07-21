@@ -1,6 +1,7 @@
 import { Component,EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Meal } from '../meal';
 
 @Component({
@@ -25,26 +26,33 @@ export class MealFormComponent implements OnInit {
  formSubmitted = new EventEmitter<Meal>();
  
  mealForm: FormGroup = new FormGroup({});
- 
- constructor(private fb: FormBuilder) { }
+
+ constructor(
+  private fb: FormBuilder,   
+  private router: Router
+  ) { }
  
  get name() { return this.mealForm.get('name')!; }
  get type() { return this.mealForm.get('type')!; }
  get rating() { return this.mealForm.get('rating'); }
  
  ngOnInit() {
-   this.initialState.subscribe(meal => {
-     this.mealForm = this.fb.group({
-       name: [ meal.name, [Validators.required] ],
-       type: [ meal.type, [Validators.required] ],
-       rating: [ meal.rating ]
-     });
-   });
+  this.initialState.subscribe(meal => {
+    this.mealForm = this.fb.group({
+      name: [ meal.name, [Validators.required] ],
+      type: [ meal.type, [Validators.required] ],
+      rating: [ meal.rating ]
+    });
+  });
  
    this.mealForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
  }
  
- submitForm() {
-   this.formSubmitted.emit(this.mealForm.value);
- }
+  cancelForm() {
+    this.router.navigate(['/meals']);
+  }
+
+  submitForm() {
+    this.formSubmitted.emit(this.mealForm.value);
+  }
 }

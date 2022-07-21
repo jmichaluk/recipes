@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, map} from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Meal } from '../meal';
@@ -12,6 +12,8 @@ import { MealService } from '../meal.service';
 })
 export class MealSearchComponent implements OnInit {
   meals$!: Observable<Meal[]>;
+  searchedMeals$!: Observable<Meal[]>;
+
   private searchTerms = new Subject<string>();
 
   constructor(private mealService: MealService) {}
@@ -22,15 +24,27 @@ export class MealSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.meals$ = this.searchTerms.pipe(
+    this.fetchMeals();
+    this.searchedMeals$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
 
       // ignore new term if same as previous term
-      distinctUntilChanged(),
+      distinctUntilChanged(),      
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.mealService.searchMeals(term)),
+      switchMap((term: string) => 
+        this.meals$.pipe(map(meals =>
+          meals.filter(meal =>
+            meal.name?.includes(term)
+          )
+        )
+      ))
     );
   }
+
+  private fetchMeals(): void {
+    this.meals$ = this.mealService.getMeals();
+  }
 }
+

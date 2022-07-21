@@ -1,0 +1,16 @@
+<form class="ingredient-form" autocomplete="off" [formGroup]="ingredientForm" (ngSubmit)="submitForm()">
+  <div class="form-floating mb-3">
+    <input class="form-control" type="text" id="name" formControlName="name" placeholder="Name" required>
+    <label for="name">Name</label>
+  </div>
+
+  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+    <div *ngIf="name.errors?.['required']">
+      Name is required.
+    </div>
+    <div *ngIf="name.errors?.['minlength']">
+      Name must be at least 3 characters long.
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="ingredientForm.invalid">Add</button>
+</form>

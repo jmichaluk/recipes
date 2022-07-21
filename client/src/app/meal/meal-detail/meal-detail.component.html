@@ -1,0 +1,16 @@
+<div *ngIf="meal">
+    <h2>{{meal.name | uppercase}} Details</h2>
+    <div>id: {{meal._id}}</div>
+    <div>name: {{meal.name}}</div>
+    <div>type: {{meal.type}}</div>
+    <div>rating: {{meal.rating??"N/A"}}</div>
+
+    <h3>Ingredients</h3>
+    <ul>
+        <li *ngFor="let mealIngredient of mealIngredients$ | async">        
+            {{mealIngredient._id}} -- {{mealIngredient.quantity}} {{mealIngredient.measurement}}
+        </li>
+    </ul>
+</div>
+
+<button type="button" routerLink="/meals">Back</button>

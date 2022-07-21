@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, Subject, tap, catchError, map } from 'rxjs';
+import { Observable, of, Subject, tap, catchError, map, filter } from 'rxjs';
 
 import { Meal } from './meal';
 
@@ -48,13 +48,10 @@ export class MealService {
       // if not search term, return empty meal array.
       return of([]);
     }
-
-    return this.httpClient.get<Meal[]>(`${this.url}/?name=${term}`).pipe(
-      tap(x => x.length ? 
-        console.log(`found "${x.length}" recipes matching "${term}"`) :
-        console.log(`no recipes matching "${term}"`)),
-        catchError(this.handleError<Meal[]>('searchMeals', []))
-    );
+    // this.meals$.pipe(filter(meals =>
+    //   meals.forEach => )
+    //   )
+      return of([]);
   }
 
   /**

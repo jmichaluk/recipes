@@ -14,23 +14,6 @@ mealRouter.get("/", async (_req, res) => {
     }
 });
 
-// mealRouter.get("/:name", async(req, res) => {
-//     try {
-//         const name = req?.params?.name;
-//         const query = { name: name };
-//         const meals = await collections.meals.find(query).toArray();
-        
-//         if (meals) {
-//             res.status(200).send(meals)
-//         } else {
-//             res.status(404).send(`Failed to find meals with search term: ${name}`)
-//         }
-//     } catch (error) {
-//         res.status(404).send(`Failed to find meals with search term: ${req?.params?.name}`)
-//     }
-
-// });
-
 mealRouter.get("/:id", async (req, res) => {
     try {
         const id = req?.params?.id;
