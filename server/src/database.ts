@@ -48,6 +48,10 @@ async function applySchemaValidation(db: mongodb.Db) {
                 rating: {
                     bsonType: "number",
                     description: "'rating' is a number",
+                },
+                source: {
+                    bsonType: "string",
+                    description: "'source' is a string."
                 }
             },
         },
