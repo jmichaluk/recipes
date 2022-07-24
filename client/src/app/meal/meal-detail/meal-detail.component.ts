@@ -7,6 +7,8 @@ import { MealService } from '../meal.service';
 import { MealIngredientService } from 'src/app/meal-ingredient/meal-ingredient.service';
 import { MealIngredient } from 'src/app/meal-ingredient/meal-ingredient';
 import { Observable,map, count } from 'rxjs';
+import { Ingredient } from 'src/app/ingredient/ingredient';
+import { IngredientService } from 'src/app/ingredient/ingredient.service';
 
 @Component({
   selector: 'app-meal-detail',
@@ -16,7 +18,8 @@ import { Observable,map, count } from 'rxjs';
 export class MealDetailComponent implements OnInit {
 
   @Input() meal?: Meal;
-  @Input() mealIngredients$: Observable<MealIngredient[]> = new Observable
+  mealIngredients$: Observable<MealIngredient[]> = new Observable;
+  ingredients$: Observable<Ingredient[]> = new Observable;
 
   mealId: string = ""
 
@@ -24,6 +27,7 @@ export class MealDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private mealService: MealService,
     private mealIngredientService: MealIngredientService,
+    private ingredientService: IngredientService,
     private location: Location
   ) { }
 
@@ -31,6 +35,7 @@ export class MealDetailComponent implements OnInit {
     this.mealId = String(this.route.snapshot.paramMap.get('id')) ?? "";
     this.getMeal();
     this.fetchMealIngredients();
+    this.fetchIngredients();
   }
 
   getMeal(): void {
@@ -49,7 +54,13 @@ export class MealDetailComponent implements OnInit {
     console.log("Fetched Meal Ingredients");
   }
 
+  private fetchIngredients(): void {
+    this.ingredients$ = this.ingredientService.getIngredients();
+    console.log("Fetched ingredients.")
+  }
+
   goBack(): void {
     this.location.back();
   }
+
 }

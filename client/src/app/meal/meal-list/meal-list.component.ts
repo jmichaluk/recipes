@@ -18,6 +18,7 @@ export class MealListComponent implements OnInit {
   }
 
   deleteMeal(id: string): void {
+    // TODO: Delete mealIngredients for meal.
     this.mealService.deleteMeal(id).subscribe({
       next: () => this.fetchMeals()
     });

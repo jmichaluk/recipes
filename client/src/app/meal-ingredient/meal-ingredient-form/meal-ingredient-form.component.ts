@@ -47,6 +47,13 @@ export class MealIngredientFormComponent implements OnInit {
     this.fetchMealIngredients();
     this.fetchIngredients();
     this.mealId = this.initialState ?? ""
+
+    this.mealIngredientForm = this.fb.group({
+      mealId: [ [Validators.required] ],
+      ingredientId: [ [Validators.required] ],
+      quantity: [  ],
+      measurement: [ ]
+    });
   
     this.mealIngredientForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
   }
@@ -71,6 +78,4 @@ export class MealIngredientFormComponent implements OnInit {
   submitForm() {
     this.formSubmitted.emit(this.mealIngredientForm.value);
   }
-
-
 }

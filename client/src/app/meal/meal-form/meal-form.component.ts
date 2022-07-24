@@ -27,9 +27,9 @@ export class MealFormComponent implements OnInit {
  
  mealForm: FormGroup = new FormGroup({});
 
- constructor(
-  private fb: FormBuilder,   
-  private router: Router
+  constructor(
+    private fb: FormBuilder,   
+    private router: Router
   ) { }
  
  get name() { return this.mealForm.get('name')!; }

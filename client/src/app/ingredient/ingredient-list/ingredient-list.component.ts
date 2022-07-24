@@ -18,6 +18,8 @@ export class IngredientListComponent implements OnInit {
   }
 
   deleteIngredient(id: string): void {
+    // TODO: Delete mealIngredients for this ingredient.
+    // TODO: Alert for meals that will be losing the ingredient.
     this.ingredientService.deleteIngredient(id).subscribe({
       next: () => this.fetchIngredients()
     });

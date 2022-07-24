@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { MealService } from 'src/app/meal/meal.service';
-import { Meal } from 'src/app/meal/meal';
 import { MealIngredient } from '../meal-ingredient';
 import { MealIngredientService } from '../meal-ingredient.service';
 
@@ -17,10 +14,8 @@ export class AddMealIngredientComponent implements OnInit {
   mealId: string | undefined;
 
   constructor(   
-    private router: Router,
     private route: ActivatedRoute,
     private mealIngredientService: MealIngredientService,
-    private mealService: MealService
   ) {}
 
   ngOnInit(): void {

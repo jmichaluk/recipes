@@ -7,10 +7,14 @@
 
     <h3>Ingredients</h3>
     <ul>
-        <li *ngFor="let mealIngredient of mealIngredients$ | async">        
-            {{mealIngredient._id}} -- {{mealIngredient.quantity}} {{mealIngredient.measurement}}
+        <li *ngFor="let mealIngredient of mealIngredients$ | async">    
+            {{mealIngredient.quantity}} {{mealIngredient.measurement}}
+            <ng-container *ngFor="let ingredient of ingredients$ | async">
+                <ng-container *ngIf="ingredient._id === mealIngredient.ingredientId">
+                    {{ingredient.name}}
+                </ng-container>
+            </ng-container>
         </li>
     </ul>
 </div>
-
 <button type="button" routerLink="/meals">Back</button>

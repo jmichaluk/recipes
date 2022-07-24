@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // App
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CallbackPipe } from './callback.pipe';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 // Meals
@@ -41,7 +42,8 @@ import { MealIngredientFormComponent } from './meal-ingredient/meal-ingredient-f
     EditIngredientComponent,
     DashboardComponent,
     AddMealIngredientComponent,
-    MealIngredientFormComponent
+    MealIngredientFormComponent,
+    CallbackPipe
   ],
   imports: [
     BrowserModule,
