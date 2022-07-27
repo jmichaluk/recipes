@@ -17,7 +17,7 @@ A tool to keep track of recipes and plan meals.
   - ~~Source (if available: website)~~
   - ~~Rating~~
 - ~~Add meal ratings.~~
-- Hyperlink source if valid url.
+- Hyperlink source if url.
 
 ### Ingredient
 - Fix search.
@@ -31,4 +31,5 @@ A tool to keep track of recipes and plan meals.
 - Type to search for ingredient to include.
 - Make a list of measurement types to prepopulate: tablespoon, pound, ounce, etc. (This will simplify shopping list aggregation).
 - Allow fractions and decimals for quantity. (eg. 1/4 cup)
+- Be able to edit meal ingredients.
 

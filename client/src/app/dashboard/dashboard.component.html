@@ -1,0 +1,18 @@
+
+
+<h2>Meal Randomizer</h2>
+
+<form class="meal-randomizer-form" autocomplete="off" (ngSubmit)="randomizeMeals()" [formGroup]="mealRandomizerForm">
+    <div class="input-group mb-3">
+        <span class="input-group-text">#</span>
+        <input class="form-control" type="number" id="count" formControlName="count" value="0" placeholder="0">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Randomize Meals</button>
+
+</form>
+
+<ul>
+<li *ngFor="let meal of randomizedMeals$ | async">
+    {{meal.name}}
+</li></ul>
