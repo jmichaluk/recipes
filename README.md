@@ -5,14 +5,14 @@ A tool to keep track of recipes and plan meals.
 ## Todo:
 
 ### Dashboard
-- Randomize meals for a set number of days.
+- ~~Randomize meals for a set number of days.~~
   - Add filters/limits (eg: 1 chicken, 1 turkey, 1 meatless)
 - Shopping list aggregation.
 
 ### Meal
-- Fix search.
+- ~~Fix search.~~
 - Add sort/filter.
-- Details page that shows all meal information.
+- ~~Details page that shows all meal information.~~
   - ~~Ingredients~~
   - ~~Source (if available: website)~~
   - ~~Rating~~
