@@ -8,6 +8,20 @@
         <input class="form-control" type="number" id="count" formControlName="count" value="0" placeholder="0">
     </div>
 
+    <div class="input-group mb3">
+        <input type="checkbox" class="btn-check" name="options" id="meatless" formControlName="meatless" checked>
+        <label class="btn btn-outline-secondary" for="meatless">Meatless</label>
+
+        <input type="checkbox" class="btn-check" name="options" id="chicken" formControlName="chicken" checked>
+        <label class="btn btn-outline-secondary" for="chicken">Chicken</label>
+
+        <input type="checkbox" class="btn-check" name="options" id="turkey" formControlName="turkey" checked>
+        <label class="btn btn-outline-secondary" for="turkey">Turkey</label>
+
+        <input type="checkbox" class="btn-check" name="options" id="other" formControlName="other" checked>
+        <label class="btn btn-outline-secondary" for="other">Other</label>
+    </div>
+
     <button class="btn btn-primary" type="submit">Randomize Meals</button>
 
 </form>
