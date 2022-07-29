@@ -20,11 +20,13 @@ A tool to keep track of recipes and plan meals.
   - ~~Rating~~
 - ~~Add meal ratings.~~
 - Hyperlink source if url.
+- Add pagination.
 
 ### Ingredient
-- Add search.
+- ~~Add search.~~
 - Add sort/filter.
 - Add type (spice, vegetable, protein, dairy, etc.)
+- Add pagination.
 
 ### Meal Ingredient
 - ~~Add ingredients to each meal.~~

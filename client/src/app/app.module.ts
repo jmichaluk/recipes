@@ -21,6 +21,8 @@ import { IngredientListComponent } from './ingredient/ingredient-list/ingredient
 import { AddIngredientComponent } from './ingredient/add-ingredient/add-ingredient.component';
 import { IngredientFormComponent } from './ingredient/ingredient-form/ingredient-form.component';
 import { EditIngredientComponent } from './ingredient/edit-ingredient/edit-ingredient.component';
+import { IngredientSearchComponent } from './ingredient/ingredient-search/ingredient-search.component';
+
 
 // MealIngredients
 import { AddMealIngredientComponent } from './meal-ingredient/add-meal-ingredient/add-meal-ingredient.component';
@@ -42,6 +44,7 @@ import { MealIngredientFormComponent } from './meal-ingredient/meal-ingredient-f
     DashboardComponent,
     AddMealIngredientComponent,
     MealIngredientFormComponent,
+    IngredientSearchComponent,
   ],
   imports: [
     BrowserModule,
