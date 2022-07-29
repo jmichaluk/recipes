@@ -1,6 +1,10 @@
 <h2 class="text-center m-5">Meals List</h2>
   
-<app-meal-search></app-meal-search>
+<div id="meal-search-component">
+  <div class="input-group mb-3">
+    <span class="input-group-text">Search</span>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
+  </div>
 
   <table class="table table-striped table-bordered">
     <thead>
@@ -12,7 +16,7 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody *ngIf="showAll">
       <tr *ngFor="let meal of meals$ | async">
         <td><a routerLink="detail/{{meal._id}}">{{meal.name}}</a></td>
         <td>{{meal.type}}</td>
@@ -23,6 +27,19 @@
         </td>
       </tr>
     </tbody>
+
+    <tbody *ngIf="!showAll">
+      <tr *ngFor="let meal of searchedMeals$ | async">
+        <td><a routerLink="detail/{{meal._id}}">{{meal.name}}</a></td>
+        <td>{{meal.type}}</td>
+        <td>{{meal.rating}}</td>
+        <td>
+          <button class="btn btn-primary me-1" [routerLink]="['edit/', meal._id]">Edit</button>
+          <button class="btn btn-danger" (click)="deleteMeal(meal._id || '')">Delete</button>
+        </td>
+      </tr>
+    </tbody>
   </table>
+</div>
 
   <button class="btn btn-primary mt-3" [routerLink]="['new']">Add a New Meal</button>

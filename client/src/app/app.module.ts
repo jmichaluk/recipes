@@ -13,7 +13,6 @@ import { MealListComponent } from './meal/meal-list/meal-list.component';
 import { MealFormComponent } from './meal/meal-form/meal-form.component';
 import { AddMealComponent } from './meal/add-meal/add-meal.component';
 import { EditMealComponent } from './meal/edit-meal/edit-meal.component';
-import { MealSearchComponent } from './meal/meal-search/meal-search.component';
 import { MealDetailComponent } from './meal/meal-detail/meal-detail.component';
 
 // Ingredients
@@ -21,7 +20,6 @@ import { IngredientListComponent } from './ingredient/ingredient-list/ingredient
 import { AddIngredientComponent } from './ingredient/add-ingredient/add-ingredient.component';
 import { IngredientFormComponent } from './ingredient/ingredient-form/ingredient-form.component';
 import { EditIngredientComponent } from './ingredient/edit-ingredient/edit-ingredient.component';
-import { IngredientSearchComponent } from './ingredient/ingredient-search/ingredient-search.component';
 
 
 // MealIngredients
@@ -35,7 +33,6 @@ import { MealIngredientFormComponent } from './meal-ingredient/meal-ingredient-f
     MealFormComponent,
     AddMealComponent,
     EditMealComponent,
-    MealSearchComponent,
     MealDetailComponent,
     IngredientListComponent,
     AddIngredientComponent,
@@ -44,7 +41,6 @@ import { MealIngredientFormComponent } from './meal-ingredient/meal-ingredient-f
     DashboardComponent,
     AddMealIngredientComponent,
     MealIngredientFormComponent,
-    IngredientSearchComponent,
   ],
   imports: [
     BrowserModule,
