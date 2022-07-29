@@ -1,6 +1,6 @@
 
 
-<h2>Meal Randomizer</h2>
+<h2 class="text-center m-5">Meal Randomizer</h2>
 
 <form class="meal-randomizer-form" autocomplete="off" (ngSubmit)="randomizeMeals()" [formGroup]="mealRandomizerForm">
     <div class="input-group mb-3">
@@ -26,7 +26,32 @@
 
 </form>
 
-<ul>
-<li *ngFor="let meal of randomizedMeals$ | async">
-    {{meal.name}}
-</li></ul>
+<ng-container *ngIf="showShoppingList">
+
+    <h3>Meals</h3>
+    <ul>
+        <li *ngFor="let meal of randomizedMeals$ | async">
+            {{meal.name}}
+        </li>
+    </ul>
+
+    <h3>Shopping List</h3> 
+    <h4>Ingredients</h4>
+    <ul *ngFor="let meal of randomizedMeals$ | async">
+        <li>
+            <h5>{{meal.name}}</h5>
+        </li>
+        <ul *ngFor="let item of mealIngredients$ | async">
+            <ng-container *ngIf="item.mealId == meal._id">
+                <li>
+                    {{item.quantity}} {{item.measurement}}
+                    <ng-container *ngFor="let ingredient of ingredients$ | async">
+                        <ng-container *ngIf="ingredient._id == item.ingredientId">
+                            {{ingredient.name}}
+                        </ng-container>
+                    </ng-container>
+                </li>
+            </ng-container>
+        </ul>
+    </ul>
+</ng-container>

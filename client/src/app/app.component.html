@@ -1,7 +1,9 @@
 <h1>{{title}}</h1>
-<nav>
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/meals">Meals</a>
-    <a routerLink="/ingredients">Ingredients</a>
+<nav class="nav nav-pills nav-fill">
+    <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+    <a routerLink="/meals" class="nav-link">Meals</a>
+    <a routerLink="/ingredients" class="nav-link">Ingredients</a>
 </nav>
 <router-outlet></router-outlet>
+
+<!-- TODO: indicate active tab -->

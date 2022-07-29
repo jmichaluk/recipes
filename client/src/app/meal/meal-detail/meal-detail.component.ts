@@ -41,8 +41,6 @@ export class MealDetailComponent implements OnInit {
   getMeal(): void {
     this.mealService.getMeal(this.mealId)
       .subscribe(meal => this.meal = meal);
-
-      console.log(`Fetched Meal: ${this.meal?.name} for id : ${this.mealId}`)
   }
 
   private fetchMealIngredients(): void {
@@ -51,12 +49,10 @@ export class MealDetailComponent implements OnInit {
         mealIngredient.mealId === this.mealId
       )
     ));
-    console.log("Fetched Meal Ingredients");
   }
 
   private fetchIngredients(): void {
     this.ingredients$ = this.ingredientService.getIngredients();
-    console.log("Fetched ingredients.")
   }
 
   goBack(): void {

@@ -1,23 +1,32 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
+import { Ingredient } from '../ingredient/ingredient';
+import { IngredientService } from '../ingredient/ingredient.service';
+import { MealIngredient } from '../meal-ingredient/meal-ingredient';
+import { MealIngredientService } from '../meal-ingredient/meal-ingredient.service';
 import { Meal } from '../meal/meal';
 import { MealService } from '../meal/meal.service';
+
+// TODO: Show aggregated shopping list. (use modal? https://getbootstrap.com/docs/5.1/components/modal/)
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
-  
 })
+
 export class DashboardComponent implements OnInit {
 
+  @Input() showShoppingList: Boolean = false
   mealRandomizerForm: FormGroup = new FormGroup({});
   randomizedMeals$: Observable<Meal[]> = new Observable
-
-  // TODO: Add shopping list
+  mealIngredients$: Observable<MealIngredient[]> = new Observable
+  ingredients$: Observable<Ingredient[]> = new Observable
 
   constructor(
     private mealService: MealService,
+    private mealIngredientService: MealIngredientService,
+    private ingredientService: IngredientService,
     private fb: FormBuilder
   ) { }
 
@@ -44,8 +53,6 @@ export class DashboardComponent implements OnInit {
     const isTurkey: Boolean = this.turkey;
     const isOther: Boolean = this.other;
 
-    console.log("Randomize Meals" + count + " : " + isMeatless + isChicken + isTurkey + isOther);
-
     this.randomizedMeals$ = this.mealService.getMeals()
       .pipe(map(meals => meals.sort(
         () => 0.5 - Math.random()
@@ -59,5 +66,16 @@ export class DashboardComponent implements OnInit {
         return true;
       }
       ).slice(0,count)))
+      this.fetchShoppingList();
+      this.fetchIngredients();
+      this.showShoppingList = true
+  }
+
+  fetchShoppingList() {
+    this.mealIngredients$ = this.mealIngredientService.getMealIngredients();     
+  }
+    
+  private fetchIngredients(): void {
+    this.ingredients$ = this.ingredientService.getIngredients();
   }
 }

@@ -6,8 +6,10 @@ A tool to keep track of recipes and plan meals.
 
 ### Dashboard
 - ~~Randomize meals for a set number of days.~~
-  - Add filters/limits (eg: 1 chicken, 1 turkey, 1 meatless)
-- Shopping list aggregation.
+  - ~~Add filters~~
+  - Add limits (eg. 1 chicken, 2 turkey)
+- ~~Shopping list~~
+  - Combine duplicate items for single overall shopping list (as opposed to 1 list per meal)
 
 ### Meal
 - ~~Fix search.~~
@@ -20,7 +22,7 @@ A tool to keep track of recipes and plan meals.
 - Hyperlink source if url.
 
 ### Ingredient
-- Fix search.
+- Add search.
 - Add sort/filter.
 - Add type (spice, vegetable, protein, dairy, etc.)
 
