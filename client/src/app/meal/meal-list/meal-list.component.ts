@@ -52,6 +52,7 @@ export class MealListComponent implements OnInit {
   }
 
   private fetchMeals(): void {
-    this.meals$ = this.mealService.getMeals();
+    this.meals$ = this.mealService.getMeals()
+      .pipe(map(meals => meals.sort((a,b) => a.name!.localeCompare(b.name!))));
   }
 }

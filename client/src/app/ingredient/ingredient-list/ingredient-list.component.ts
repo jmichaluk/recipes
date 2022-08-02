@@ -54,6 +54,7 @@ export class IngredientListComponent implements OnInit {
   }
 
   private fetchIngredients(): void {
-    this.ingredients$ = this.ingredientService.getIngredients();
+    this.ingredients$ = this.ingredientService.getIngredients()
+      .pipe(map(ingredients => ingredients.sort((a,b) => a.name!.localeCompare(b.name!))));
   }
 }
