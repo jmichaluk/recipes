@@ -44,9 +44,10 @@ export class MealDetailComponent implements OnInit {
   }
 
   private fetchMealIngredients(): void {
-    this.mealIngredients$ = this.mealIngredientService.getMealIngredients().pipe(map(mealIngredients => 
-      mealIngredients.filter(mealIngredient => 
-        mealIngredient.mealId === this.mealId
+    this.mealIngredients$ = this.mealIngredientService.getMealIngredients()
+      .pipe(map(mealIngredients => 
+        mealIngredients.filter(mealIngredient => 
+          mealIngredient.mealId === this.mealId
       )
     ));
   }

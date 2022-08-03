@@ -24,15 +24,7 @@ export class MealIngredientService {
     this.refreshMealIngredients();
     return this.mealIngredients$;
   }
-
-  // getMealIngredientsByMeal(mealId: string): Observable<MealIngredient[]> {
-  //   return this.httpClient.get<MealIngredient[]>(`${this.url}/${mealId}`)
-  // }
-
-  // getMealIngredientsByIngredient(ingredientId: string): Observable<MealIngredient> {
-  //   return this.httpClient.get<MealIngredient>(`${this.url}/${ingredientId}`)
-  // }
-
+  
   getMealIngredient(id: string): Observable<MealIngredient> {
     return this.httpClient.get<MealIngredient>(`${this.url}/${id}`);
   }

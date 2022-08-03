@@ -4,36 +4,29 @@ A tool to keep track of recipes and plan meals.
 
 ## Todo:
 
+### App
+- Highlight active page in nav bar.
+
 ### Dashboard
-- ~~Randomize meals for a set number of days.~~
-  - ~~Add filters~~
-  - Add limits (eg. 1 chicken, 2 turkey)
-- ~~Shopping list~~
-  - Combine duplicate items for single overall shopping list (as opposed to 1 list per meal)
+- Add limits to meal randomization(eg. 1 chicken, 2 turkey)
+- Combine duplicate items for single overall shopping list (as opposed to 1 list per meal)
 
 ### Meal
-- ~~Fix search.~~
-- Add sort/filter.
-- ~~Details page that shows all meal information.~~
-  - ~~Ingredients~~
-  - ~~Source (if available: website)~~
-  - ~~Rating~~
-- ~~Add meal ratings.~~
+- Add filter.
 - Hyperlink source if url.
 - Add pagination.
 
 ### Ingredient
-- ~~Add search.~~
-- Add sort/filter.
+- Add filter.
 - Add type (spice, vegetable, protein, dairy, etc.)
 - Add pagination.
 
 ### Meal Ingredient
-- ~~Add ingredients to each meal.~~
-  - ~~Show ingredient name (instead of mealIngredient ID.~~
-  - Give option to add/remove ingredients on the edit meal screen.
+- Give option to add/remove ingredients on the edit meal screen.
 - Type to search for ingredient to include.
 - Make a list of measurement types to prepopulate: tablespoon, pound, ounce, etc. (This will simplify shopping list aggregation).
 - Allow fractions and decimals for quantity. (eg. 1/4 cup)
 - Be able to edit meal ingredients.
+- Show list of meal ingredients when adding to meal.
+- Fix loading of meal ingredient item name.
 

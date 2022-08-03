@@ -38,14 +38,13 @@ export class MealIngredientFormComponent implements OnInit {
     private ingredientService: IngredientService
   ) {}
   
-  // get mealId() { return this.mealIngredientForm.get('mealId')}
   get ingredientId() { return this.mealIngredientForm.get('ingredientId')!; }
   get measurement() { return this.mealIngredientForm.get('measurement'); }
   get quantity() { return this.mealIngredientForm.get('quantity'); }
   
   ngOnInit() {
-    this.fetchMealIngredients();
     this.fetchIngredients();
+    this.fetchMealIngredients();
     this.mealId = this.initialState ?? ""
 
     this.mealIngredientForm = this.fb.group({
@@ -70,8 +69,9 @@ export class MealIngredientFormComponent implements OnInit {
 
   private fetchMealIngredients(): void {
     this.mealIngredients$ = this.mealIngredientService.getMealIngredients()
-      .pipe(
-        map(mealIngredients => mealIngredients.filter(mealIngredient => mealIngredient.mealId === this.mealId))
+      .pipe(map(mealIngredients => 
+        mealIngredients.filter(mealIngredient => 
+          mealIngredient.mealId === this.mealId))
       );
   }
  
